@@ -35,7 +35,7 @@ def clear_database():
 
 
 def create_chunks(documents: list[Document]) -> list[str]:
-    text_splitter = MarkdownTextSplitter(chunk_size=600, chunk_overlap=500, length_function=len)
+    text_splitter = MarkdownTextSplitter(chunk_size=1000, chunk_overlap=800, length_function=len)
     chunks = []
     for document in documents:
         chunks.extend(text_splitter.split_text(document.page_content))
