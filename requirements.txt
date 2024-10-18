@@ -1,0 +1,11 @@
+requests
+beautifulsoup4
+chromadb
+unstructured
+langchain
+langchain-community
+langchain-chroma
+azure-ai-inference
+python-dotenv
+flask
+pytest
