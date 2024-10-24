@@ -5,6 +5,7 @@ from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import MarkdownTextSplitter
 from langchain.schema.document import Document
 from embeddings.embeddings import get_embeddings
+from query.chat_query import make_query
 
 DATA_PATH = 'data/rules.md'
 CHROMA_PATH = 'chroma/'
@@ -35,7 +36,7 @@ def clear_database():
 
 
 def create_chunks(documents: list[Document]) -> list[str]:
-    text_splitter = MarkdownTextSplitter(chunk_size=1000, chunk_overlap=800, length_function=len)
+    text_splitter = MarkdownTextSplitter(chunk_size=500, chunk_overlap=400, length_function=len)
     chunks = []
     for document in documents:
         chunks.extend(text_splitter.split_text(document.page_content))
@@ -68,12 +69,12 @@ def get_related_chunks(query: str, collection: chromadb.Collection):
 
 
 def generate_response(query: str, context: list[str]):
-    input_text = f"Query: {query}\nContext: {' '.join(context['documents'][0])}\nResponse:"
+    input_text = f"Query: {query}\nContext: {' '.join(context['documents'][0])}"
     return input_text
 
 
-def rag_query(query: str, collection: chromadb.Collection):
+def rag_query(query: str, collection: chromadb.Collection) -> None:
     context = get_related_chunks(query, collection)
     response = generate_response(query, context)
-
-    return response
+    make_query(response)
+    # return response
