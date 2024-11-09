@@ -21,13 +21,13 @@ def get_bestiary() -> None:
         response = requests.get(BASE_URL + link['href'], headers=HEADERS)
         soup = BeautifulSoup(response.text, 'html.parser')
         title = soup.find("h2", {"class": "card-title"}).findNext('a').text
-        descriptions = soup.find('div', {'class': 'desc card__article-body'}).findAllNext('p')
+        descriptions = soup.find('div', {'class': 'desc card__article-body'}).find_all('p')
         description = ''
         for desc in descriptions:
             description += desc.text
         bestiary[title] = description
 
-    print(bestiary)
+    # print(bestiary)
 
     with open('data/bestiary.json', 'w') as file:
         json.dump(bestiary, file, indent=4, ensure_ascii=False)

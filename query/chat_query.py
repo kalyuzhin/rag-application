@@ -12,13 +12,13 @@ MODEL_NAME_LLAMA = "meta-llama-3.1-405b-instruct"
 MODEL_NAME_OPENAI = "gpt-4o"
 
 
-def make_query(query: str) -> None:
+def make_query(query: str):
     client = ChatCompletionsClient(
         endpoint=ENDPOINT,
         credential=AzureKeyCredential(GITHUB_TOKEN),
     )
     response = client.complete(
-        stream=True,
+        # stream=True,
         messages=[
             SystemMessage(content=""),
             UserMessage(content=query),
@@ -28,8 +28,7 @@ def make_query(query: str) -> None:
         max_tokens=4096,
         model=MODEL_NAME_OPENAI,
     )
-    print('')
-    for update in response:
-        if update.choices:
-            print(update.choices[0].delta.content or "", end="")
-    print('\n')
+    # for update in response:
+    #     if update.choices:
+    #         print(update.choices[0].delta.content or "", end="")
+    return response.choices[0].message.content

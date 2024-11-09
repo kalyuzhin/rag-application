@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dungeons & Dragons helper</title>
+</head>
+<body class="bg-black">
+        <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+            <div class="text-center">
+                <h1 class="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl text-white">
+                    Dungeons & Dragons helper
+                </h1>
+            </div>
+                <form method="post" action="/query">
+                    <label for="query" class="block text-sm/12 font-medium text-white">Запрос</label>
+                    <div class="relative mt-2 rounded-md shadow-sm">
+                      <input type="text" name="query" id="query" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6" placeholder="Введите ваш запрос...">
+                    </div>
+                </form> 
+        </div>
+</body>
+</html>

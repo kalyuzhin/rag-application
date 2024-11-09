@@ -36,7 +36,7 @@ def clear_database():
 
 
 def create_chunks(documents: list[Document]) -> list[str]:
-    text_splitter = MarkdownTextSplitter(chunk_size=500, chunk_overlap=400, length_function=len)
+    text_splitter = MarkdownTextSplitter(chunk_size=1500, chunk_overlap=500, length_function=len)
     chunks = []
     for document in documents:
         chunks.extend(text_splitter.split_text(document.page_content))
@@ -73,8 +73,7 @@ def generate_response(query: str, context: list[str]):
     return input_text
 
 
-def rag_query(query: str, collection: chromadb.Collection) -> None:
+def rag_query(query: str, collection: chromadb.Collection):
     context = get_related_chunks(query, collection)
     response = generate_response(query, context)
-    make_query(response)
-    # return response
+    return make_query(response)
