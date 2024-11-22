@@ -10,4 +10,9 @@
 
 ## Usage
 
-### TODO
+Run following commands:
+
+```
+docker build -t rag .
+docker run -p 8080:8080 rag
+```

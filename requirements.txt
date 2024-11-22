@@ -8,3 +8,4 @@ langchain-chroma
 azure-ai-inference
 python-dotenv
 pytest
+Flask

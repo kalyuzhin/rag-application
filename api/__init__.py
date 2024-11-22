@@ -3,6 +3,7 @@ from database.chroma_handler import rag_query, get_chroma
 
 app = Flask(__name__)
 db = get_chroma()
+app.config['DEBUG'] = True
 
 
 @app.route('/')
